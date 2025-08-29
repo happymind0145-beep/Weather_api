@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f8ff; text-align: center; padding: 40px; }
+     
+        input {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #2a8996;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+       
+        .card {
+            background: rgb(224, 172, 172);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: inline-block;
+            margin-top: 20px;
+        }
+        h1 { color: #d41515; }
+        p { font-size: 18px; }
+    </style>
+</head>
+<body>
+
+    <h2>Check Weather</h2>
+    <div class="form-container">
+        <form method="POST" action="/">
+            <input type="text" name="city" placeholder="Enter City Name" required>
+            <button type="submit">Click</button>
+        </form>
+    </div>
+
+    {% if weather %}
+    <div class="card">
+        <h1>Weather in {{ weather.name }}</h1>
+        <p><b>Temperature:</b> {{ weather.main.temp }} °C</p>
+        <p><b>Feels Like:</b> {{ weather.main.feels_like }} °C</p>
+        <p><b>Humidity:</b> {{ weather.main.humidity }} %</p>
+        <p><b>Pressure:</b> {{ weather.main.pressure }} hPa</p>
+        <p><b>Weather:</b> {{ weather.weather[0].main }} ({{ weather.weather[0].description }})</p>
+        <p><b>Wind Speed:</b> {{ weather.wind.speed }} m/s</p>
+    </div>
+    {% endif %}
+
+</body>
+</html>
